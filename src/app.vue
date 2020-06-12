@@ -2,7 +2,12 @@
 
     <div class="app-container">    
            <!-- 顶部 -->
-        <mt-header fixed title="灌篮高手"></mt-header>
+        <mt-header fixed title="灌篮高手">
+            <!-- <router-link to="home/" slot="left">
+                <mt-button icon="back">back</mt-button>
+                <mt-button @click="handleClose">close</mt-button>
+            </router-link> -->
+        </mt-header>
       
            <!-- router-view -->
         <transition>
@@ -25,7 +30,7 @@
 			</router-link>
 			<router-link class="mui-tab-item" to="/search">
 				<span class="mui-icon mui-icon-search"></span>
-				<span class="mui-tab-label">设置</span>
+				<span class="mui-tab-label">搜索</span>
 			</router-link>
 		</nav>
        
@@ -42,7 +47,9 @@
 
 .app-container{
 	padding-top:40px;
+	padding-bottom:40px;
 	overflow-x:hidden;
+	margin-bottom:20px;
 }
 
 .v-enter{
