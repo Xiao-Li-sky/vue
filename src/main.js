@@ -28,13 +28,29 @@ Vue.http.options.emulateJSON = true
 import './lib/mui/css/mui.min.css'
 import './lib/mui/css/icons-extra.css'
 
+//引入mui
+ // import  mui from "./lib/mui/js/mui.min.js"
+ // Vue.prototype.mui = mui
+
+ //导入vue-lazyload
+ import VueLazyload from 'vue-lazyload'
+ Vue.use(VueLazyload)
+
+//安装缩略图插件
+import VuePreview from 'vue-preview'
+Vue.use(VuePreview)
+
+//
+
 //按需导入mint-UI的组件
-import { Header, Swipe, SwipeItem, Button } from 'mint-ui'
-//import 'mint-ui/lib/style.css'
-Vue.component(Header.name, Header)
-Vue.component(Swipe.name, Swipe)
-Vue.component(SwipeItem.name, SwipeItem)
-Vue.component(Button.name,Button)
+// import { Header, Swipe, SwipeItem, Button } from 'mint-ui'
+// Vue.component(Header.name, Header)
+// Vue.component(Swipe.name, Swipe)
+// Vue.component(SwipeItem.name, SwipeItem)
+// Vue.component(Button.name,Button)
+import MintUI from 'mint-ui'
+Vue.use(MintUI)
+import 'mint-ui/lib/style.css'
 
 import app from './app.vue'
 

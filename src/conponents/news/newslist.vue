@@ -1,7 +1,7 @@
 <template>
 
 <ul class="mui-table-view">
-	<li class="mui-table-view-cell mui-media" v-for="" :key="">
+<!-- 	<li class="mui-table-view-cell mui-media" v-for="" :key="">
 		<router-link to="/home/newsinfo/">
 			<img class="mui-media-object mui-pull-left" src="https://portrait.gitee.com/uploads/avatars/user/1636/4909645_baikaishuizhudongxi_1591855671.png!avatar30">
 			<div class="mui-media-body">
@@ -12,31 +12,21 @@
 				</p>
 			</div>
 		</router-link>
-	</li>
-	<li class="mui-table-view-cell mui-media">
-		<router-link to="/home/newsinfo/">
-			<img class="mui-media-object mui-pull-left" src="https://portrait.gitee.com/uploads/avatars/user/1636/4909645_baikaishuizhudongxi_1591855671.png!avatar30">
+	</li> -->
+
+	<li class="mui-table-view-cell mui-media" v-for="item in list" :key="item.id">
+		<router-link :to="'/home/newsinfo/'+item.id">
+			<img class="mui-media-object mui-pull-left" :src="item.src">
 			<div class="mui-media-body">
-							<h1>乔丹</h1>
+							<h1>{{ item.name }}</h1>
 				<p class="mui-ellipsis">
-				    <span>时间：2020-06-12 09：40</span>
-				    <span>点击：0次</span>
+				    <span>时间：{{ item.time|dateFormat }}</span>
+				    <span>点击：{{ item.clickNum }}次</span>
 				</p>
 			</div>
 		</router-link>
 	</li>
-	<li class="mui-table-view-cell mui-media">
-		<router-link to="/home/newsinfo/">
-			<img class="mui-media-object mui-pull-left" src="https://portrait.gitee.com/uploads/avatars/user/1636/4909645_baikaishuizhudongxi_1591855671.png!avatar30">
-			<div class="mui-media-body">
-							<h1>詹姆斯</h1>
-				<p class="mui-ellipsis">
-				    <span>时间：2020-06-12 09：40</span>
-				    <span>点击：0次</span>
-				</p>
-			</div>
-		</router-link>
-	</li>
+
 </ul>
 </template>
 
@@ -45,7 +35,26 @@ import {Toast} from 'mint-ui'
 export default {
 	data(){
 		return {
-			newsList:[]
+			newsList:[],
+			list:[{
+				id:1,
+				src:'https://portrait.gitee.com/uploads/avatars/user/1636/4909645_baikaishuizhudongxi_1591855671.png!avatar30',
+				name:'乔丹',
+				time:'2020-06-12',
+				clickNum:'2',
+			},{
+				id:2,
+				src:'https://portrait.gitee.com/uploads/avatars/user/1636/4909645_baikaishuizhudongxi_1591855671.png!avatar30',
+				name:'科比',
+				time:'2020-06-12 ',
+				clickNum:'666',
+			},{
+				id:3,
+				src:'https://portrait.gitee.com/uploads/avatars/user/1636/4909645_baikaishuizhudongxi_1591855671.png!avatar30',
+				name:'詹姆斯',
+				time:'2020-06-12',
+				clickNum:'2',
+			}]
 		}
 	},
 	created(){
