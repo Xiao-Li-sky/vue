@@ -65,3 +65,25 @@
 1.篮球商品列表
 2.详情数据 
 3.评论 
+
+##父组件向子组件传方法，子组件调用方法并将数据传回父组件
++@getCount:'selectNum'
++this.$emit('getCount',数据)
+
+##监听文本框值改变  ,点击按钮获取值（一般用于子组件值改变）
+1.方法一
++标签 @change='countChange' ref="numBox"
++通过ref的值获取到原生Dom,然后(实例.原生Dom.value)得到值
+-如this.$ref.numBox.value
+2.二 文本框v-model 绑定一个空的变量 按钮添加方法
++如：  msg:''  然后用方法获取值 this.msg.trim()
+
+
+###父组件给子组件传方法（@方法名）、传值（props:[]）
+
+##父组件给子组件传递max值
+1.问题：当父组件渲染完成的时候服务器的数据获取是异步的，max值可能还没有得到，使得父组件传递的max值为undefined
+2.解决：通过watch属性监听
++watch:{
+	'max':function(newval, oldval){ mui(".mui-numbox").number().setOption('max',newval) }
+}

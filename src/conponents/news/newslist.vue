@@ -39,20 +39,20 @@ export default {
 			list:[{
 				id:1,
 				src:'https://portrait.gitee.com/uploads/avatars/user/1636/4909645_baikaishuizhudongxi_1591855671.png!avatar30',
-				name:'乔丹',
-				time:'2020-06-12',
+				name:'科比',
+				time:'2020-06-11 12:20:47',
 				clickNum:'2',
 			},{
 				id:2,
-				src:'https://portrait.gitee.com/uploads/avatars/user/1636/4909645_baikaishuizhudongxi_1591855671.png!avatar30',
+				src:'https://inews.gtimg.com/newsapp_bt/0/11304268823/1000',
 				name:'科比',
-				time:'2020-06-12 ',
+				time:'2020-06-12 03:15:01',
 				clickNum:'666',
 			},{
 				id:3,
-				src:'https://portrait.gitee.com/uploads/avatars/user/1636/4909645_baikaishuizhudongxi_1591855671.png!avatar30',
-				name:'詹姆斯',
-				time:'2020-06-12',
+				src:'https://k.sinaimg.cn/n/sports/transform/20160321/m5HH-fxqpchx6402354.jpg/w570e1d.jpg',
+				name:'科比',
+				time:'2020-06-14 06:42:20',
 				clickNum:'2',
 			}]
 		}

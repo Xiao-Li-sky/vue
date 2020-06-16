@@ -52,12 +52,22 @@ import MintUI from 'mint-ui'
 Vue.use(MintUI)
 import 'mint-ui/lib/style.css'
 
+//导入vuex
+import Vuex from 'vuex'
+//注册vuex
+Vue.use(Vuex)
+//建立数据仓储对象
+var store = new Vuex.Store({
+	state:{},
+	mutations:{}
+})
+
 import app from './app.vue'
 
 var vm = new Vue({
 	el: '#app',
 	render: c=> c(app),
-	router
+	router,store
 
 })
 

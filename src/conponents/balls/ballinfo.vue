@@ -13,22 +13,22 @@
     	<!-- 商品购买 -->
     	<div class="mui-card">
 			<div class="mui-card-header">{{ ballList[id-1].message[0].title }}</div>
-				<div class="mui-card-content">
+				<div class="mui-card-content">  
 					<div class="mui-card-content-inner">
 						<p class="price">
 							市场价：<del>￥{{ ballList[id-1].message[0].sell_market }}</del>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;销售价: <span class="now">￥{{ ballList[id-1].message[0].sell_now }} </span>
 						</p>
 						<p>购买数量：
-						   	<div class="mui-numbox" data-numbox-min="1" data-numbox-max="9">
+						   	<div class="mui-numbox" data-numbox-min="1" :data-numbox-max=" ballList[id-1].message[0].amount ">
 					            <button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
-					            <input class="mui-input-numbox" type="number">
+					            <input class="mui-input-numbox" type="number" @change='countChange' ref='numbox'>
 					            <button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
 				</div>
 						</p>
 
 						<p>
 							<mt-button type='primary' size='small'>立即购买</mt-button>
-							<mt-button type='danger' size='small'>加入购物车</mt-button>
+							<mt-button type='danger' size='small' @click='getBuyNum'>加入购物车</mt-button>
 						</p>
 					</div>
 				</div>
@@ -266,6 +266,12 @@ export default {
         // }
         goComment(id) {
             this.$router.push({ name: "Comment", params: { id } });
+        },
+        countChange() {
+            console.log(this.$refs.numbox.value)
+        },
+        getBuyNum() {
+
         }
 	},
 	mounted() {

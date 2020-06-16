@@ -3,7 +3,7 @@
     	<h3>评论区域</h3>
         <hr>
         <textarea placeholder="请输入内容（最多120字）" maxlength="120" v-model="msg"></textarea>
-        <mt-button type="primary" size="large" @click='postComment'>发表</mt-button>
+        <mt-button type="primary" size="large" @click='postComment(id)'>发表</mt-button>
 
         <div class="cmt-list">
         	<div class="cmt-item">
@@ -37,17 +37,17 @@
             </div>
         </div> -->
 
-        <div class="cmt-list" v-for="item in list[id-1].newsComments" :key="item.id">
+        <div class="cmt-list" v-for="(item, i) in list[id-1].newsComments" :key="item.time">
             <div class="cmt-item">
                 <div class="cmt-title">
-                    <span>第{{ item.id }}楼&nbsp;&nbsp;</span>
+                    <span>第{{ i+1 }}楼&nbsp;&nbsp;</span>
                     <span>用户：{{ item.name }}</span>
                     <span>时间：{{ item.time|dateFormat }}</span>
                 </div>
                 <div class="cmt-body">{{ item.content }}</div>
             </div>
         </div>
-
+ 
 
         <mt-button type="danger" size="large" plain @click="getmore">加载更多</mt-button>
     </div>
@@ -73,24 +73,24 @@ export default {
                 },{
                     id:2,
                     name:'乔丹',
-                    time:'2020-06-15',
+                    time:'2020-06-16',
                     content:'太滑'
                 },{
                     id:3,
                     name:'詹姆斯',
-                    time:'2020-06-15',
+                    time:'2020-06-12',
                     content:'这球不错'
                 }],
                 //新闻评论
                 newsComments:[{
                     id:1,
                     name:'yang',
-                    time:'2020-06-15',
+                    time:'2020-06-11',
                     content:'好好看数据'
                 },{
                     id:2,
                     name:'乔丹',
-                    time:'2020-06-15',
+                    time:'2020-06-14',
                     content:'跟我有的一拼'
                 },{
                     id:3,
@@ -104,7 +104,7 @@ export default {
                 ballComments:[{
                     id:1,
                     name:'科比',
-                    time:'2020-06-15',
+                    time:'2020-06-14',
                     content:'买'
                 },{
                     id:2,
@@ -114,7 +114,7 @@ export default {
                 },{
                     id:3,
                     name:'克6',
-                    time:'2020-06-15',
+                    time:'2020-06-16',
                     content:'这球不错'
                 }],
                 //新闻评论
@@ -126,12 +126,12 @@ export default {
                 },{
                     id:2,
                     name:'克6',
-                    time:'2020-06-15',
+                    time:'2020-06-16',
                     content:'差得远呢'
                 },{
                     id:3,
                     name:'詹姆斯',
-                    time:'2020-06-15',
+                    time:'2020-06-17',
                     content:'老铁'
                 }]
             },{
@@ -152,7 +152,9 @@ export default {
                     name:'克6',
                     time:'2020-06-15',
                     content:'这球不错'
-                }]
+                }],
+                //新闻评论
+                newsComments:[]
             },{
                 id:4,
                 //商品评论
@@ -229,12 +231,13 @@ export default {
                     time:'2020-06-15',
                     content:'这球不错'
                 }]
-            }]
-    	}
-        return {}
+            }],
+    	   
+        }
     },
     created(){
         this.getComments()
+        //console.log((this.id)+1)
     },
     methods:{
     	//获取评论
@@ -251,25 +254,35 @@ export default {
     	getmore(){
             this.getComments()
     	},
-    	postComment(){
+    	postComment(id){
     		//校验是否为空
     		if (this.msg.trim().length === 0 ) {
     			return Toast('评论不能为空');
-    		}
-    		this.$http.post(" " + $router.params.id,{
-    			content:this.msg.trim()
-    		}).then(function(result) {
-    			if(result.body.status === 0) {
-                    //拼接一个评论对象
-                    var cmt = {
-                    	user_name : "匿名用户",
-                    	add_time : Date.now(),
-                    	content: this.msg.trim()
-                    };
-                    this.comments.unshift(cmt);
-                    this.msg = ''
-    			}
-    		})
+    		} else {
+                var cmt = {
+                    //id:id+1,
+                    name:'匿名',
+                    time:Date.now(),
+                    content:this.msg.trim()
+                }
+                this.list[id-1].newsComments.unshift(cmt)
+                this.msg = ''
+            }
+    		// this.$http.post(" " + $router.params.id,{
+    		// 	content:this.msg.trim()
+    		// }).then(function(result) {
+    		// 	if(result.body.status === 0) {
+      //               //拼接一个评论对象
+      //               var cmt = {
+      //               	user_name : "匿名用户",
+      //               	add_time : Date.now(),
+      //               	content: this.msg.trim()
+      //               };
+      //               this.comments.unshift(cmt);
+      //               this.msg = ''
+    		// 	}
+    		// })
+
     	}
     }
 }

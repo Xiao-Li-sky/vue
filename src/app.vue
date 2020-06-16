@@ -44,7 +44,7 @@
 <script>
 export default {
     data() {
-
+        return{}
     },
     created() {
         this.backPage()
