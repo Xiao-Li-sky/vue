@@ -56,10 +56,46 @@ import 'mint-ui/lib/style.css'
 import Vuex from 'vuex'
 //注册vuex
 Vue.use(Vuex)
+
+var car = JSON.parse(localStorage.getItem('car' || '[]'))
 //建立数据仓储对象
 var store = new Vuex.Store({
-	state:{},
-	mutations:{}
+	state:{
+		shoppingCar:[]
+	},
+	mutations:{
+		addToShoppingCar(state, ballinfo) {
+			var flag = false
+            state.shoppingCar.some(item => {
+            	if(item.id == ballinfo.id) {
+            		item.count += parseInt(ballinfo.count)
+            		flag = true
+            		return true
+            	}
+            })
+            if(!flag) {
+            	state.shoppingCar.push(ballinfo)
+            }
+            localStorage.setItem('car',JSON.stringify(state.shoppingCar))
+		},
+		updateballinfo(state,ballinfo) {
+			state.shoppingCar.some(item => {
+				if( item.id == ballinfo.id) {
+					return item.count = ballinfo.count 
+				}
+			})
+			localStorage.setItem('car',JSON.stringify(state.shoppingCar))
+		}
+	},
+	getters:{
+		getAllCount(state){
+			var n = 0
+			state.shoppingCar.forEach(item => {
+				n += item.count
+			})
+			return n
+		},
+	}
 })
 
 import app from './app.vue'

@@ -58,7 +58,7 @@ export default {
 		}
 	},
 	created(){
-		this.getNewsList()
+		//this.getNewsList()
 	},
     methods:{
         getNewsList(){

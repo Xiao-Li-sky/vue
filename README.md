@@ -87,3 +87,9 @@
 +watch:{
 	'max':function(newval, oldval){ mui(".mui-numbox").number().setOption('max',newval) }
 }
+
+##vuex
+1.state中的数据不能修改，要修改只能通过mutations
+2.组件如果要从state中获取数据，需要this.$store.state:***
+3.如果组件想要修改数据，必须使用mutations提供的方法，通过this.$store.commit('方法名',参数)
+4.对外提供store中state的数据，推荐使用getters，  this.$store.getters.***

@@ -236,7 +236,7 @@ export default {
         }
     },
     created(){
-        this.getComments()
+       // this.getComments()
         //console.log((this.id)+1)
     },
     methods:{

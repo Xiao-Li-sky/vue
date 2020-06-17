@@ -12,23 +12,23 @@
 		</div>
     	<!-- 商品购买 -->
     	<div class="mui-card">
-			<div class="mui-card-header">{{ ballList[id-1].message[0].title }}</div>
+			<div class="mui-card-header" ref="title">{{ ballList[id-1].message[0].title }}</div>
 				<div class="mui-card-content">  
 					<div class="mui-card-content-inner">
 						<p class="price">
-							市场价：<del>￥{{ ballList[id-1].message[0].sell_market }}</del>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;销售价: <span class="now">￥{{ ballList[id-1].message[0].sell_now }} </span>
+							市场价：<del>￥{{ ballList[id-1].message[0].sell_market }}</del>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;销售价: ￥<span class="now" ref='sell'>{{ ballList[id-1].message[0].sell_now }}</span>
 						</p>
 						<p>购买数量：
-						   	<div class="mui-numbox" data-numbox-min="1" :data-numbox-max=" ballList[id-1].message[0].amount ">
+						   	<div class="mui-numbox" data-numbox-min="0" :data-numbox-max=" ballList[id-1].message[0].amount ">
 					            <button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
 					            <input class="mui-input-numbox" type="number" @change='countChange' ref='numbox'>
 					            <button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
-				</div>
+				            </div>
 						</p>
 
 						<p>
 							<mt-button type='primary' size='small'>立即购买</mt-button>
-							<mt-button type='danger' size='small' @click='getBuyNum'>加入购物车</mt-button>
+							<mt-button type='danger' size='small' @click='addToCar'>加入购物车</mt-button>
 						</p>
 					</div>
 				</div>
@@ -48,6 +48,7 @@
 				<mt-button type='primary' size='large' plain @click="goComment(id)">商品评论</mt-button>
 			</div>
 		</div>
+        <p style="display: none" ref='src'>{{ ballList[id-1].message[0].src }}</p>
     </div>	
 
 </template>
@@ -60,13 +61,14 @@ export default {
 	data() {
         return {
         	id:this.$route.params.id,
+            src:this.$route.params.src,
         	ballList:[{
         		id:1,
         		message:[
         		    {
 			    	id:1,
 			    	src: 'https://gaitaobao1.alicdn.com/tfscom/i4/1713424658/O1CN01vzdOli1kHPTpQynAD_!!1713424658.jpg_240x240xz.jpg_.webp',
-				    title: '篮球威尔胜',
+				    title: '篮球威尔胜1',
 				    sell_now: '89',
 				    sell_market: '99',
                     num:'ball-01',
@@ -90,9 +92,9 @@ export default {
         		message:[
         		    {
 			    	id:2,
-			    	src: 'https://gaitaobao1.alicdn.com/tfscom/i4/1713424658/O1CN01vzdOli1kHPTpQynAD_!!1713424658.jpg_240x240xz.jpg_.webp',
-				    title: '篮球威尔胜',
-				    sell_now: '89',
+			    	src: 'https://gaitaobao1.alicdn.com/tfscom/i3/2968585758/O1CN01IOXWLu1sPD9TD0RZo_!!0-item_pic.jpg_240x240xz.jpg_.webp',
+				    title: '篮球威尔胜2',
+				    sell_now: '90',
 				    sell_market: '99',
                     num:'ball-02',
 				    amount: '60',
@@ -116,8 +118,8 @@ export default {
         		    {
 			    	id:3,
 			    	src: 'https://gaitaobao1.alicdn.com/tfscom/i4/1713424658/O1CN01vzdOli1kHPTpQynAD_!!1713424658.jpg_240x240xz.jpg_.webp',
-				    title: '篮球威尔胜',
-				    sell_now: '89',
+				    title: '篮球威尔胜3',
+				    sell_now: '96',
 				    sell_market: '99',
                     num:'ball-01',
 				    amount: '601',
@@ -140,9 +142,9 @@ export default {
         		message:[
         		    {
 			    	id:4,
-			    	src: 'https://gaitaobao1.alicdn.com/tfscom/i4/1713424658/O1CN01vzdOli1kHPTpQynAD_!!1713424658.jpg_240x240xz.jpg_.webp',
-				    title: '篮球威尔胜',
-				    sell_now: '89',
+			    	src: 'https://gaitaobao1.alicdn.com/tfscom/i4/2452776068/O1CN01pcGNyT1uhBvuYX5Sn_!!2452776068.jpg_240x240xz.jpg_.webp',
+				    title: '篮球威尔胜4',
+				    sell_now: '78',
 				    sell_market: '99',
                     num:'ball-03',
 				    amount: '60',
@@ -165,9 +167,9 @@ export default {
         		message:[
         		    {
 			    	id:5,
-			    	src: 'https://gaitaobao1.alicdn.com/tfscom/i4/1713424658/O1CN01vzdOli1kHPTpQynAD_!!1713424658.jpg_240x240xz.jpg_.webp',
-				    title: '篮球威尔胜',
-				    sell_now: '89',
+			    	src: 'https://gaitaobao1.alicdn.com/tfscom/i3/2968585758/O1CN01IOXWLu1sPD9TD0RZo_!!0-item_pic.jpg_240x240xz.jpg_.webp',
+				    title: '篮球威尔胜5',
+				    sell_now: '99',
 				    sell_market: '99',
                     num:'ball-02',
 				    amount: '63',
@@ -190,9 +192,9 @@ export default {
         		message:[
         		    {
 			    	id:6,
-			    	src: 'https://gaitaobao1.alicdn.com/tfscom/i4/1713424658/O1CN01vzdOli1kHPTpQynAD_!!1713424658.jpg_240x240xz.jpg_.webp',
-				    title: '篮球威尔胜',
-				    sell_now: '89',
+			    	src: 'https://gaitaobao1.alicdn.com/tfscom/i4/2452776068/O1CN01pcGNyT1uhBvuYX5Sn_!!2452776068.jpg_240x240xz.jpg_.webp',
+				    title: '篮球威尔胜6',
+				    sell_now: '93',
 				    sell_market: '99',
                     num:'ball-03',
 				    amount: '25',
@@ -216,8 +218,8 @@ export default {
         		    {
 			    	id:7,
 			    	src: 'https://gaitaobao1.alicdn.com/tfscom/i4/1713424658/O1CN01vzdOli1kHPTpQynAD_!!1713424658.jpg_240x240xz.jpg_.webp',
-				    title: '篮球威尔胜',
-				    sell_now: '89',
+				    title: '篮球威尔胜7',
+				    sell_now: '96',
 				    sell_market: '99',
                     num:'ball-01',
 				    amount: '3',
@@ -268,10 +270,20 @@ export default {
             this.$router.push({ name: "Comment", params: { id } });
         },
         countChange() {
-            console.log(this.$refs.numbox.value)
+           //console.log(this.$refs.numbox.value)
         },
-        getBuyNum() {
-
+        addToCar(id) {
+            var ballinfo = {
+                id: this.id, 
+                count: parseInt(this.$refs.numbox.value || 0),
+                price: parseInt(this.$refs.sell.textContent),
+                title: this.$refs.title.textContent,
+                src:this.$refs.src.textContent,
+                selected: true
+            }
+            //console.log( ballinfo.count)
+            
+           this.$store.commit('addToShoppingCar',ballinfo)
         }
 	},
 	mounted() {

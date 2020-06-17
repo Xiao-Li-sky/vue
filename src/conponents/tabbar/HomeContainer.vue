@@ -53,7 +53,7 @@ export default {
 		}
 	},
 	created() {
-		this.getSwipe();
+		//this.getSwipe();
 	},
 	methods: {
         getSwipe() {
