@@ -281,7 +281,7 @@ export default {
                 src:this.$refs.src.textContent,
                 selected: true
             }
-            //console.log( ballinfo.count)
+            //console.log( ballinfo.id)
             
            this.$store.commit('addToShoppingCar',ballinfo)
         }

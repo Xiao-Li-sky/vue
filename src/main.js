@@ -78,14 +78,28 @@ var store = new Vuex.Store({
             }
             localStorage.setItem('car',JSON.stringify(state.shoppingCar))
 		},
-		updateballinfo(state,ballinfo) {
+		updateballinfo(state, ballinfo) {
 			state.shoppingCar.some(item => {
 				if( item.id == ballinfo.id) {
 					return item.count = ballinfo.count 
 				}
 			})
 			localStorage.setItem('car',JSON.stringify(state.shoppingCar))
-		}
+		},
+		upstate(state, index) {
+			//state.shoppingCar = balls
+			state.shoppingCar.splice(index,1)
+			localStorage.setItem('car',JSON.stringify(state.shoppingCar))
+			//console.log(index)
+		},
+		upselect(state, info) {
+            state.shoppingCar.some(item => {
+            	if(item.id == info.id) {
+            		item.selected = info.select 
+            	}
+            })
+            localStorage.setItem('car',JSON.stringify(state.shoppingCar))
+		},
 	},
 	getters:{
 		getAllCount(state){
@@ -95,6 +109,20 @@ var store = new Vuex.Store({
 			})
 			return n
 		},
+		getSettle(state) {
+			var settle = {
+				counts:0,
+				total_price:0,
+			}
+			state.shoppingCar.some(item => {
+				if(item.selected == true){
+				    settle.counts += item.count
+				    settle.total_price += item.price*item.count	
+				}
+				
+			})
+			return settle
+		}
 	}
 })
 
