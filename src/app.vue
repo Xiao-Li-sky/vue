@@ -7,7 +7,9 @@
                 <mt-button icon="back">back</mt-button>
                 <mt-button @click="handleClose">close</mt-button>
             </router-link> -->
-            <mt-button icon="back" slot="left" @click="backPage">返回</mt-button>
+            <span  slot="left" @click="backPage" v-show="flag">
+                <mt-button icon="back">返回</mt-button>
+            </span>
         </mt-header>
       
            <!-- router-view -->
@@ -44,14 +46,27 @@
 <script>
 export default {
     data() {
-        return{}
+        return{
+            flag:false
+        }
     },
     created() {
-        this.backPage()
+        this.flag = this.$route.path === '/home'?false:true
     },
     methods: {
         backPage() {
             this.$router.go(-1)
+        }
+    },
+    watch: {
+        "$route.path":function(newVal) {
+            if (newVal === '/home') {
+                this.flag = false
+               // console.log(newVal)
+            } else {
+                this.flag = true
+               // console.log(newVal)
+            }
         }
     }
 }

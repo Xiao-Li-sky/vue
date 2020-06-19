@@ -93,3 +93,11 @@
 2.组件如果要从state中获取数据，需要this.$store.state:***
 3.如果组件想要修改数据，必须使用mutations提供的方法，通过this.$store.commit('方法名',参数)
 4.对外提供store中state的数据，推荐使用getters，  this.$store.getters.***
+
+##购物车
+1.商品添加到购物车
+2.购物车商品详情
+3.商品增减功能、选中功能
+4.购买合算功能
+
+##header返回功能

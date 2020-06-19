@@ -15,14 +15,6 @@ Vue.filter('dateFormat', function (dateStr, pattern = 'YYYY-MM-DD HH:mm:ss') {
     return moment(dateStr).format(pattern)
 })
 
-//导入vue.resource
-import VueResource from 'vue-resource'
-//安装vue.resource
-Vue.use(VueResource)
-//设置请求根路径
-Vue.http.options.root = ''
-//设置全局post的表单数据为JSON格式
-Vue.http.options.emulateJSON = true
 
 //导入MUI样式
 import './lib/mui/css/mui.min.css'
@@ -40,7 +32,14 @@ import './lib/mui/css/icons-extra.css'
 import VuePreview from 'vue-preview'
 Vue.use(VuePreview)
 
-//
+//导入vue.resource
+import VueResource from 'vue-resource'
+//安装vue.resource
+Vue.use(VueResource)
+//设置请求根路径
+Vue.http.options.root = ''
+//设置全局post的表单数据为JSON格式
+Vue.http.options.emulateJSON = true
 
 //按需导入mint-UI的组件
 // import { Header, Swipe, SwipeItem, Button } from 'mint-ui'
